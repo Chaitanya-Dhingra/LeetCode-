@@ -225,4 +225,21 @@ public class LL {
         temp.next=(list1==null)?list2:list1;
         return start.next;
     }
+
+    //Leetcode Question: 141: Linked List Cycle
+    public boolean hasCycle(Node head) {
+        Node slow=head;
+        Node fast=head;
+        if(slow==null) return false;
+        while(fast!=null && fast.next!=null)
+        {
+            slow=slow.next;
+            fast=fast.next.next;
+            if(slow==fast)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }
