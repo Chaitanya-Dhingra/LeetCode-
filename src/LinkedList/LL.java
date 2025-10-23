@@ -1,4 +1,5 @@
 package LinkedList;
+import java.util.*;
 
 public class LL {
     private Node head;
@@ -241,5 +242,28 @@ public class LL {
             }
         }
         return false;
+    }
+
+    //Leetcode Question: 1171: Remove zero sum consecutive nodes from LL
+    public Node removeZeroSumSublists(Node head) {
+        int prefix=0;
+        Node dummy= new Node(0, head);
+        HashMap<Integer,Node> map= new HashMap<>();
+        Node temp=dummy;
+        while(temp!=null)
+        {
+            prefix+=temp.value;
+            map.put(prefix,temp);
+            temp=temp.next;
+        }
+        prefix=0;
+        temp=dummy;
+        while(temp!=null)
+        {
+            prefix+=temp.value;
+            temp.next=map.get(prefix).next;
+            temp=temp.next;
+        }
+        return dummy.next;
     }
 }
